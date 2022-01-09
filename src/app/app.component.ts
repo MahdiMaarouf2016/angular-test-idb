@@ -29,8 +29,13 @@ export class AppComponent implements OnInit {
 
   }
 ngOnInit(): void {
-
-  this.primengConfig.ripple = true;
+  this.playersService.getAll().then(
+    players=>{
+      this.players = players;
+    },error=>{
+      alert('cound not get players list !');
+    }
+  )
 }
   
 filterate($event,field,filtername){

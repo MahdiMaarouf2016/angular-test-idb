@@ -55,6 +55,16 @@ export class PlayersService {
     });
   }
 
+  getAll(): Promise<IPlayer[]>{
+      return new Promise<IPlayer[]>((resolve, error) => {
+      this.dbService.getAll('player').subscribe((players:IPlayer[])=> {
+        resolve(players);
+      }, err => {
+        error(err);
+      })
+    });
+  }
+
    addBulk(players: IPlayer[]): Promise<Array<IPlayer>> {
      return new Promise<IPlayer[]>((resolve, error) => {
        this.dbService.bulkAdd('player', players).subscribe(ids => {
