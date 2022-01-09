@@ -37,6 +37,14 @@ filterate($event,field,filtername){
   this.table.filter($event.target.value, field,filtername );
 }
 
+delete(player){
+  this.playersService.delete(player.id).then(res=>{
+    alert("player has been deleted !");
+  },error=>{
+    alert("error has been occured when deleting player");
+  })
+}
+
 }
 
 /*
