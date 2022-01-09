@@ -1,4 +1,141 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+
+
+
+<p-table #dt [value]="players" [(selection)="selectedplayers" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"  [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0" [globalFilterFields]="['name','country.name','representative.name','status']">
+
+            <ng-template pTemplate="caption">
+                <div class="table-header">
+                    List of Players
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input="dt.filterGlobal($event.target.value, 'contains')" placeholder="Global Search" />
+                    </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 3rem"></th>
+                    <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                    <th pSortableColumn="app">App <p-sortIcon field="app"></p-sortIcon></th>
+                    <th pSortableColumn="min">Min <p-sortIcon field="min"></p-sortIcon></th>
+                    <th pSortableColumn="goals">Goals <p-sortIcon field="goals"></p-sortIcon></th>
+                    
+                    <th pSortableColumn="decisive">Decisive <p-sortIcon field="decisive"></p-sortIcon></th>
+                    <th pSortableColumn="yello">Yello <p-sortIcon field="yello"></p-sortIcon></th>
+                    <th pSortableColumn="red">Red <p-sortIcon field="red"></p-sortIcon></th>
+                    <th pSortableColumn="hpm">Red <p-sortIcon field="hpm"></p-sortIcon></th>
+                    <th pSortableColumn="pour">Pour <p-sortIcon field="pour"></p-sortIcon></th>
+
+                    <th pSortableColumn="aerialwon">Aerial won <p-sortIcon field="aerialwon"></p-sortIcon></th>
+                    <th pSortableColumn="hdm">Hdm <p-sortIcon field="hdm"></p-sortIcon></th>
+
+                    <th style="width: 8rem"></th>
+                </tr>
+                <tr>
+                    <th>
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="filterate($event, 'name', 'contains')" placeholder="Search by Name" class="p-column-filter">
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="filterate($event, 'app', 'contains')" placeholder="Search by app" class="p-column-filter">
+                    </th>
+
+                    <th>
+                    <input pInputText type="text" (input)="filterate($event, 'min', 'contains')" placeholder="Search by Min" class="p-column-filter">
+                    <input pInputText type="text" (input)="filterate($event, 'goals', 'contains')" placeholder="Search by goals" class="p-column-filter">
+
+                     <input pInputText type="text" (input)="filterate($event, 'decisive', 'contains')" placeholder="Search by decisive" class="p-column-filter">
+
+                     <input pInputText type="text" (input)="filterate($event, 'yellow', 'contains')" placeholder="Search by yellow" class="p-column-filter">
+
+                     <input pInputText type="text" (input)="filterate($event, 'red', 'contains')" placeholder="Search by red" class="p-column-filter">
+
+                     <input pInputText type="text" (input)="filterate($event, 'hpm', 'contains')" placeholder="Search by hpm" 
+                     class="p-column-filter">
+
+                     <input pInputText type="text" (input)="filterate($event, 'pour', 'contains')" placeholder="Search by pourcent" class="p-column-filter">
+
+                     <input pInputText type="text" (input)="filterate($event, 'aerialwon', 'contains')" placeholder="Search by aerial won" class="p-column-filter">
+
+                     <input pInputText type="text" (input)="filterate($event, 'hdm', 'contains')" placeholder="Search by hdm" class="p-column-filter">
+                     </th>
+                    <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-player>
+                <tr class="p-selectable-row">
+                    <td>
+                        <p-tableCheckbox [value]="player"></p-tableCheckbox>
+                    </td>
+
+                    <td>
+                        <span class="p-column-title">Name</span>
+                        {{player.name}}
+                    </td>
+
+                    <td>
+                        <span class="p-column-title">App</span>
+                       {{player.app}}
+                    </td>
+
+                    <td>
+                        <span class="p-column-title">Min</span>
+                        {{player.min}}
+                    </td>
+
+                    <td>
+                        <span class="p-column-title">Goals</span>
+                        {{player.goals}}
+                    </td>
+                    <td>
+                      <span class="p-column-title">decisive</span>
+                      {{player.decisive}}
+                    </td>
+
+                    <td>
+                      <span class="p-column-title">yellow</span>
+                      {{player.yellow}}
+                    </td>
+
+                    <td>
+                      <span class="p-column-title">red</span>
+                      {{player.red}}
+                    </td>
+
+                    <td>
+                      <span class="p-column-title">Hpm</span>
+                      {{player.hpm}}
+                    </td>
+
+                    <td>
+                      <span class="p-column-title">Pour</span>
+                      {{player.pour}}
+                    </td>
+                    
+                    <td>
+                      <span class="p-column-title">Pour</span>
+                      {{player.pour}}
+                    </td>
+
+                    <td>
+                      <span class="p-column-title">Aerial won</span>
+                      {{player.aerialwon}}
+                    </td>
+                    <td>
+                      <span class="p-column-title">Hdm</span>
+                      {{player.hdm}}
+                    </td>
+                    <td style="text-align: center">
+                        <button pButton type="button" class="p-button-secondary" icon="pi pi-cog"></button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="8">No customers found.</td>
+                </tr>
+            </ng-template>
+            
+</p-table>
